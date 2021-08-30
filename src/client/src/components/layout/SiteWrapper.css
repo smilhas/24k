@@ -1,0 +1,19 @@
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+
+.ant-layout-header.header {
+  background: none;
+}
+
+a.my-link {
+  /* font-family: 'Inter, sans-serif'; */
+  /* font-size: 1.3rem; */
+  font-weight: 500;
+  color:rgba(255, 255, 255);
+}
+a.my-link:hover {
+  text-decoration: underline;
+}
