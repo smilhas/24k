@@ -36,6 +36,11 @@
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "no-template-curly-in-string": "error"
     }
 }

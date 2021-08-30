@@ -1,25 +1,21 @@
-import React from 'react'
-import logo from './logo.svg'
+import React, { Switch, Route} from 'react-router-dom'
 import './App.css'
+import SiteWrapper from './components/layout/SiteWrapper'
+import {Regalos, LandingPage, LandingPageDev} from './components/sections/index'
+import MaintenancePage from './components/MaintenancePage'
 
-function App() : JSX.Element {
+
+function App(): JSX.Element {
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-          Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-          Learn React
-				</a>
-			</header>
-		</div>
+		<SiteWrapper>
+			<Switch>
+				<Route exact path='/' component={LandingPage} />
+				<Route exact path='/dev' component={LandingPageDev} />
+				<Route exact path='/test' component={Regalos} />
+				<Route path='/' component={MaintenancePage} />
+			</Switch>
+		</SiteWrapper>
 	)
 }
 
