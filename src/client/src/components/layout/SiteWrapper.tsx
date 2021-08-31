@@ -27,11 +27,6 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 					className='header'
 					style={{ padding: '0 50px' }}
 				>
-					{/* <div className='logo'>
-						<img alt='logo' src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'/>
-						24K
-					</div> */}
-					{/* <div className='logo' /> */}
 					<div
 						style={{width: '100%', background: '#001529', padding: '0 50px'}}
 					>
@@ -42,7 +37,6 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							className='my-link'
 						>
 							Go checkout my Github →
-							{/* <ArrowRightOutlined /> */}
 						</a>
 						<Space style={{float: 'right'}}>
 							<Button
