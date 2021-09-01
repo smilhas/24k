@@ -13,8 +13,9 @@ function MaintenancePage(): JSX.Element {
 
 	useEffect(() => {
 		const sayHello = async () => {
-			const response = await fetch('/api/hello')
-			const body = await response.json()
+			const messageModel = new MessageModel(current) 
+			const response = await MessageService.sendMessage(messageModel)
+			const body = response.data
 			console.log(body)
 		}
 		sayHello()
@@ -22,13 +23,10 @@ function MaintenancePage(): JSX.Element {
 
 	const handleClick = () => {
 		const sayHello = async () => {
-			// const messageModel = new MessageModel(current) 
-			// const response = MessageService.sendMessage(messageModel)
-			// const body = (await response).data
-			// console.log(body)
-			const response02 = await fetch('/api/HttpExample')
-			const body02 = await response02.text()
-			console.log(body02)
+			const messageModel = new MessageModel(current) 
+			const response = await MessageService.sendMessage(messageModel)
+			const body = response.data
+			console.log(body)
 		}
 		sayHello()
 		setCurrent(current === textA ? textB : textA)
