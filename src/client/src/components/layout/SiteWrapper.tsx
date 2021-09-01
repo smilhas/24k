@@ -18,6 +18,17 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 		setCurrent(e.key)
 	}
 
+	const randomString = (): string => {
+		let result = ''
+		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+		const charactersLength = characters.length
+		for ( let i = 0; i < 10; i++ ) {
+			result += characters.charAt(
+				Math.floor(Math.random() * charactersLength))
+		}
+		return result
+	}
+
 	return (
 		<div>
 			<Layout
@@ -27,11 +38,6 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 					className='header'
 					style={{ padding: '0 50px' }}
 				>
-					{/* <div className='logo'>
-						<img alt='logo' src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'/>
-						24K
-					</div> */}
-					{/* <div className='logo' /> */}
 					<div
 						style={{width: '100%', background: '#001529', padding: '0 50px'}}
 					>
@@ -42,7 +48,6 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							className='my-link'
 						>
 							Go checkout my Github →
-							{/* <ArrowRightOutlined /> */}
 						</a>
 						<Space style={{float: 'right'}}>
 							<Button
@@ -90,7 +95,11 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						</Menu.Item>
 						<SubMenu key='SubMenu' icon={<SettingOutlined />} title='Test'>
 							<Menu.ItemGroup title='Item 1'>
-								<Menu.Item key='setting:1'>Option 1</Menu.Item>
+								<Menu.Item key='setting:1'>
+									<Link to={`/${randomString()}`} target=''>
+										Random
+									</Link>
+								</Menu.Item>
 								<Menu.Item key='setting:2'>Option 2</Menu.Item>
 							</Menu.ItemGroup>
 							<Menu.ItemGroup title='Item 2'>

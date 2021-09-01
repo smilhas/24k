@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import '../App.css'
 import { Button } from 'antd'
+import MessageService from '../services/MessageService'
+import { MessageModel } from '../models/MessageModel'
 
 const textA = 'Hola Tinguis 🏄‍♂️.'
 const textB = 'Bonjour Tinguis 🏄‍♂️.'
@@ -11,8 +13,9 @@ function MaintenancePage(): JSX.Element {
 
 	useEffect(() => {
 		const sayHello = async () => {
-			const response = await fetch('/api/hello')
-			const body = await response.json()
+			const messageModel = new MessageModel(current) 
+			const response = await MessageService.sendMessage(messageModel)
+			const body = response.data
 			console.log(body)
 		}
 		sayHello()
@@ -20,8 +23,9 @@ function MaintenancePage(): JSX.Element {
 
 	const handleClick = () => {
 		const sayHello = async () => {
-			const response = await fetch('/api/hello')
-			const body = await response.json()
+			const messageModel = new MessageModel(current) 
+			const response = await MessageService.sendMessage(messageModel)
+			const body = response.data
 			console.log(body)
 		}
 		sayHello()
