@@ -1,7 +1,8 @@
 import React, { Switch, Route} from 'react-router-dom'
 import './App.css'
 import SiteWrapper from './components/layout/SiteWrapper'
-import {Regalos, LandingPage, LandingPageDev} from './components/sections/index'
+import {Regalos, LandingPage} from './components/sections/index'
+import LandingPageDev from './components/sections/dev/LandingPageDev'
 import MaintenancePage from './components/MaintenancePage'
 
 
@@ -12,7 +13,7 @@ function App(): JSX.Element {
 			<Switch>
 				<Route exact path='/' component={LandingPage} />
 				<Route exact path='/dev' component={LandingPageDev} />
-				<Route exact path='/test' component={Regalos} />
+				<Route exact path='/regalos' component={Regalos} />
 				<Route path='/' component={MaintenancePage} />
 			</Switch>
 		</SiteWrapper>

@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space } from 'antd'
 import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons'
+
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
 
 import '../../App.css'
 import './SiteWrapper.css'
@@ -11,12 +13,12 @@ const { Header, Content, Footer } = Layout
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
-	const [current, setCurrent] = useState('')
 
-	const handleClick = (e: { key: string; }) => {
-		console.log('click ', e)
-		setCurrent(e.key)
-	}
+	const [authenticated, setAuthState] = useState(false)
+
+	useEffect(() => {
+		fetchUser()
+	}, [])
 
 	const randomString = (): string => {
 		let result = ''
@@ -27,6 +29,11 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 				Math.floor(Math.random() * charactersLength))
 		}
 		return result
+	}
+
+	async function fetchUser() {
+		const result = await Auth.currentCredentials()
+		setAuthState(result.authenticated)
 	}
 
 	return (
@@ -55,12 +62,15 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							>
 								⚙
 							</Button>
-							<Button
-								key='1'
-								type='primary'
-							>
-								Login
-							</Button>
+							{ authenticated &&
+								<Button
+									key='1'
+									type='primary'
+									onClick={() => Auth.signOut()}
+								>
+									Logout
+								</Button>
+							}
 
 						</Space>
 					</div>
@@ -73,12 +83,10 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 					/>
 					<Menu
 						theme='light'
-						onClick={handleClick}
-						selectedKeys={[current]}
 						mode='horizontal'
 					>
 						<Menu.Item
-							key=''
+							key='home'
 							icon={<HomeOutlined />}
 						>
 							<Link to='/' target=''>
@@ -86,39 +94,42 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							</Link>
 						</Menu.Item>
 						<Menu.Item
-							key='test'
+							key='regalos'
 							icon={<GiftOutlined />}
 						>
-							<Link to='/test' target=''>
+							<Link to='/regalos' target=''>
 								Regalos
 							</Link>
 						</Menu.Item>
-						<SubMenu key='SubMenu' icon={<SettingOutlined />} title='Test'>
-							<Menu.ItemGroup title='Item 1'>
-								<Menu.Item key='setting:1'>
-									<Link to={`/${randomString()}`} target=''>
-										Random
+						{ authenticated &&
+							<>
+								<SubMenu key='SubMenu' icon={<SettingOutlined />} title='Test'>
+									<Menu.ItemGroup title='Item 1'>
+										<Menu.Item key='setting:1'>
+											<Link to={`/${randomString()}`} target=''>
+											Random
+											</Link>
+										</Menu.Item>
+										<Menu.Item key='setting:2'>Option 2</Menu.Item>
+									</Menu.ItemGroup>
+									<Menu.ItemGroup title='Item 2'>
+										<Menu.Item key='setting:3'>Option 3</Menu.Item>
+										<Menu.Item key='setting:4'>Option 4</Menu.Item>
+									</Menu.ItemGroup>
+								</SubMenu><Menu.Item key='alipay' icon={<AppstoreOutlined />}>
+									<Link to='/dev' target=''>
+										Dev site
 									</Link>
 								</Menu.Item>
-								<Menu.Item key='setting:2'>Option 2</Menu.Item>
-							</Menu.ItemGroup>
-							<Menu.ItemGroup title='Item 2'>
-								<Menu.Item key='setting:3'>Option 3</Menu.Item>
-								<Menu.Item key='setting:4'>Option 4</Menu.Item>
-							</Menu.ItemGroup>
-						</SubMenu>
-						<Menu.Item key='alipay' icon={<AppstoreOutlined />}>
-							<Link to='/dev' target=''>
-								Dev site
-							</Link>
-						</Menu.Item>
+							</>
+						}
 					</Menu>
 					<div className='site-layout-content'>
 						{props.children}
 					</div>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					Ant Design ©2018 Created by Ant UED
+					🏄‍♂️
 					<Divider />
 					<Descriptions size='small' column={1}>
 						<Descriptions.Item label='Devloped by'>
