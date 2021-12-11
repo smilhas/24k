@@ -1,0 +1,15 @@
+projects:
+  24kserver:
+    schemaPath: client/src/graphql/schema.json
+    includes:
+      - client/src/services/graphql/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: client/src/API.ts
+        docsFilePath: client/src/services/graphql
+extensions:
+  amplify:
+    version: 3
