@@ -36,12 +36,6 @@ function MaintenancePage(): JSX.Element {
 		<div className='App'>
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
-				<Button
-					type='primary'
-					onClick={handleClick}
-				>
-					{current}
-				</Button>
 				<p className='App-link'>
 					Esta parte del la aplicación esta en construcción 👷‍♂️
 				</p>
