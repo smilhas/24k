@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space } from 'antd'
+import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space, BackTop } from 'antd'
 import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons'
 
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
@@ -38,6 +38,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 
 	return (
 		<div>
+			<BackTop />
 			<Layout
 				className='layout'
 			>
@@ -57,11 +58,11 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							Go checkout my Github →
 						</a>
 						<Space style={{float: 'right'}}>
-							<Button
+							{/* <Button
 								key='2'
 							>
 								⚙
-							</Button>
+							</Button> */}
 							{ authenticated &&
 								<Button
 									key='1'
@@ -78,7 +79,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 				<Content style={{ padding: '0 50px' }}>
 					<PageHeader
 						ghost={false}
-						title='Tini y Sebas 🏄‍♀️🏄‍♂️'
+						title='Tini y Sebas 👰🤵'
 						subTitle='19 de Marzo 2022'
 					/>
 					<Menu

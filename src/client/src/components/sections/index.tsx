@@ -1,3 +1,3 @@
 export { Regalos } from './regalos/Regalos'
-export { LandingPage } from './dev/LandingPage'
+export { LandingPage } from './home/LandingPage'
 // export { LandingPageDev } from './dev/LandingPageDev'
