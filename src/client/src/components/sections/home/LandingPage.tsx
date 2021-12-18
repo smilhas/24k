@@ -7,9 +7,8 @@ import '@fontsource/montserrat'
 import '../../../App.css'
 import './LandingPage.css'
 
-import rings from './icon-1.png'
-import party from './icon-3.png'
-import carta from './carta.jpeg'
+import rings from '../../../images/icon-1.png'
+import party from '../../../images/icon-3.png'
 import { Link } from 'react-router-dom'
 
 const { Header, Content, Footer } = Layout
@@ -74,16 +73,16 @@ export function LandingPage (): JSX.Element {
 			<br/>
 			<br/>
 			<Header className='site-layout-header'>
-				<Title className='title-header'>TINI Y SEBAS</Title>
+				<Title level={2} className='title-header'>TINI Y SEBAS</Title>
 				<Title level={3} className='title-header'>{timeLeft}</Title>
 			</Header>
 			<Content className='site-layout-content'>
-				<Title className='title-header'>¡NOS CASAMOS!</Title>
+				<Title level={2} className='title-header'>¡NOS CASAMOS!</Title>
 				<br/>
 				<br/>
 				<Text className='site-text'>Y queremos compartir este día con vos.</Text>
 				<Divider />
-				<Title className='title-header'>EVENTOS</Title>
+				<Title level={2} className='title-header'>EVENTOS</Title>
 				<br/>
 				<br/>
 				<Text className='site-text'>Te dejamos toda la información de nuestro casamiento, para que nos acompañes en este gran día.</Text>
