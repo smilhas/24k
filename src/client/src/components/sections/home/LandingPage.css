@@ -4,8 +4,8 @@
     /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     /* height: 100%; */
     overflow-y: scroll;
-    background-image: url(https://24kserverbucket151152-dev.s3.us-east-2.amazonaws.com/imagenes/nosotros.png);
-    background-position: 0% 29%;
+    background-image: url(../../../images/nosotros.jpg);
+    background-position: 50% 29%;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -19,7 +19,7 @@
 
 .title-header {
     font-family: 'Josefin Sans', sans-serif;
-    /* font-size: 1.2rem !important; */
+    /* font-size: 1.8rem !important; */
     letter-spacing: .3rem !important;
     font-weight: 200 !important;
 }
@@ -37,7 +37,8 @@
 }    
 
 .site-layout .site-layout-footer {
-    background-image: url(./carta.jpeg);
+    background-image: url(../../../images/carta.jpeg);
+    background-position: center;
     /* background: #fff; */
     padding: 24px;
     text-align: center;
