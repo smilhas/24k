@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Menu, Card, Comment, PageHeader, Button, Descriptions, Space, Modal, Image, List, Tooltip } from 'antd'
+import { Layout, Menu, Card, Comment, PageHeader, Button, Descriptions, Space, Modal, Image, List, Tooltip, Form, Input, Alert } from 'antd'
 import { MailOutlined, GiftOutlined, SettingOutlined } from '@ant-design/icons'
 import '../../../App.css'
 
@@ -49,15 +49,20 @@ function LandingPageDev (): JSX.Element {
 	const { Meta } = Card
 
 	const [isModalVisible, setIsModalVisible] = useState(false)
-	const [formState, setFormState] = useState(new Post())
+	// const [formState, setFormState] = useState(new Post())
 	const [posts, setPosts] = useState<Post[]>([])
 	const [comments, setComments] = useState([])
 	const [selectedPost, setPost] = useState(new Post())
+
+	const [isAlertVisible, setAlertVisible] = useState(false)
+	const [messageError, setErrorMessage] = useState(false)
+	const [form] = Form.useForm()
 
 	useEffect(() => {
 		fetchPosts()
 		fetchComments()
 	}, [])
+
 
 	const showModal = (post: Post) => {
 		setPost(post)
@@ -72,9 +77,9 @@ function LandingPageDev (): JSX.Element {
 		setIsModalVisible(false)
 	}
 
-	function setInput(key: string, value: string) {
-		setFormState({ ...formState, [key]: value })
-	}
+	// function setInput(key: string, value: string) {
+	// 	setFormState({ ...formState, [key]: value })
+	// }
 	
 	async function fetchPosts() {
 		try {
@@ -115,23 +120,108 @@ function LandingPageDev (): JSX.Element {
 		} catch (err) { console.log('error fetching todos') }
 	}
 	
-	async function addPost() {
+	async function addPost(formValues: any) {
 		try {
-			if (!formState.title || !formState.description || !formState.imagepath || !formState.price) return
-			const post = { ...formState, blogPostsId: '099756fc-4c0f-4ebd-81ec-49bf1e917e19' }
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			setPosts([...posts, post])
-			setFormState(new Post())
+			if (!formValues.title || !formValues.description || !formValues.price) return
+			const post = {
+				...formValues,
+				imagepath: `https://24kserverbucket151152-dev.s3.us-east-2.amazonaws.com/imagenes/${formValues.title}.jpg`,
+				blogPostsId: '099756fc-4c0f-4ebd-81ec-49bf1e917e19'
+			}
 			await API.graphql(graphqlOperation(createPost, {input: post}))
+			setPosts([...posts, post])
+			countDown()
+			form.resetFields()
+			// setFormState(new Post())
 		} catch (err) {
 			console.log('error creating todo:', err)
+			setErrorMessage(true)
 		}
+	}
+
+	const handleClose = () => {
+		setAlertVisible(false)
+	}
+
+	function countDown() {
+		let secondsToGo = 5
+		setAlertVisible(true)
+		const timer = setInterval(() => {
+			secondsToGo -= 1
+		}, 1000)
+
+		setTimeout(() => {
+			clearInterval(timer)
+			setAlertVisible(false)
+			setErrorMessage(false)
+		}, secondsToGo * 1000)
+	}
+	
+	const onFinish = async (values: any) => {
+		console.log('Success:', values)
+		await addPost(values)
+		
+	}
+
+	const onFinishFailed = (errorInfo: any) => {
+		console.log('Failed:', errorInfo)
 	}
 
 	return (
 		<>
-			<input
+			<Form
+				name='basic'
+				labelCol={{ span: 24 }}
+				wrapperCol={{ span: 24 }}
+				form={form}
+				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
+				autoComplete='off'
+			>
+				<Form.Item
+					label='Title'
+					name='title'
+					rules={[{ required: true, message: 'Please input the title of the new post!' }]}
+				>
+					<Input/>
+				</Form.Item>
+
+				<Form.Item
+					label='Description'
+					name='description'
+					rules={[{ required: true, message: 'Please input the description of the new post!' }]}
+				>
+					<Input/>
+				</Form.Item>
+
+				<Form.Item
+					label='Price'
+					name='price'
+					rules={[{ required: true, message: 'Please input the price of the new post!' }]}
+				>
+					<Input/>
+				</Form.Item>
+
+				<Form.Item>
+					<Button type='primary' htmlType='submit'>
+									Submit
+					</Button>
+				</Form.Item>
+			</Form>
+			{isAlertVisible && (
+				<Alert
+					message={messageError ? '¡Error!' : '¡Listo!'}
+					type={messageError ? 'error' : 'success'}
+					description={messageError ? 'Tu mensaje no pudo ser enviado' : 'Tu mensaje fue enviado 📨'}
+					action={
+						<Button size='small' type='text' onClick={handleClose}>
+								Done
+						</Button>
+					}
+					showIcon
+				/>
+			)}
+			{/* <input
 				onChange={event => setInput('title', event.target.value)}
 				value={formState.title}
 				placeholder='Title'
@@ -142,16 +232,11 @@ function LandingPageDev (): JSX.Element {
 				placeholder='Description'
 			/>
 			<input
-				onChange={event => setInput('imagepath', event.target.value)}
-				value={formState.imagepath}
-				placeholder='Image Path'
-			/>
-			<input
 				onChange={event => setInput('price', event.target.value)}
 				value={formState.price}
 				placeholder='Price'
-			/>
-			<button onClick={addPost}>Create Post</button>
+			/> */}
+			{/* <button onClick={addPost}>Create Post</button> */}
 			<br/>
 			<br/>
 			<Space direction='horizontal' wrap={true}>
@@ -178,7 +263,7 @@ function LandingPageDev (): JSX.Element {
 				/>
 				<List
 					className='comment-list'
-					header={`${comments.length} replies`}
+					header={`${comments.filter((comment: any) => comment.id === selectedPost.id).length} replies`}
 					itemLayout='horizontal'
 					dataSource={comments}
 					renderItem={item => (
