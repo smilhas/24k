@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Modal, Image, Space, Typography, Alert, Form, Input, Button, Row, Col } from 'antd'
+import { Card, Modal, Image, Space, Typography, Alert, Form, Input, Button, Row, Col, Divider } from 'antd'
 import '../../../App.css'
 import './Regalos.css'
 import sillonL from './images/sillonL.png'
@@ -179,6 +179,26 @@ export function Regalos (): JSX.Element {
 						</ul>
 					</Paragraph>
 				</Typography>
+				<br/>
+				<br/>
+				<Card title='Comprobante de detalle de CBU y Alias' >
+					<Typography>
+						<Title level={2}>SEBASTIAN MILHAS</Title>
+						<Title level={5}>CUIT/CUIL : 20-38996165-6</Title>
+						<Divider />
+						<Paragraph>
+							<p>Banco:				SANTANDER</p>
+							<Divider />
+							<p>Tipo de cuenta:		Cuenta única</p>
+							<Divider />
+							<p>Cuenta:				784-025837/9</p>
+							<Divider />
+							<p>CBU:					0720784888000002583790</p>
+							<Divider />
+							<p>Alias:				SMILHAS-PESOS</p>
+						</Paragraph>
+					</Typography>
+				</Card>
 				<br/>
 				<br/>
 				<Alert
