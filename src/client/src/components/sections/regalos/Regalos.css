@@ -3,7 +3,45 @@
     /* height: 300px !important; */
 }
 
-.site-card-wrapper {
-    padding: 30px;
+.regalos-wrapper {
+    /* padding: 64px; */
+    /* padding: auto; */
+    /* background: #ececec; */
+}
+
+.regalos-space {
+    width: 100%;
+    padding: 64px 25vw;
     background: #ececec;
-  }
+}
+
+@media (max-width:768px){
+    .regalos-space{
+        padding: 64px 5vw;
+    }
+}
+
+.regalos-row {
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
+.regalos-modal {
+    /* margin: 24px auto 200px auto; */
+    /* margin-bottom: 240px; */
+    padding-bottom: 0px;
+    /* max-height: fit-content;
+    overflow-y: scroll; */
+    max-height: 85vh;
+    overflow: auto;
+}
+
+/* .regalos-modal::-webkit-scrollbar {
+    display: none;
+} */
+
+.regalos-center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}

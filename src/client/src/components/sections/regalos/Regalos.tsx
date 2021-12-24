@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Modal, Image, Space, Typography, Alert, Form, Input, Button, Row, Col, Divider } from 'antd'
 import '../../../App.css'
 import './Regalos.css'
-import sillonL from './images/sillonL.png'
+import santander from '../../../images/santander.png'
 
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import { createPost, updatePost, deletePost, createComment, updateComment, deleteComment } from '../../../services/graphql/mutations'
@@ -123,16 +123,26 @@ export function Regalos (): JSX.Element {
 	}
 
 	return (
-		<div className='site-card-wrapper'>
-			<Space direction='horizontal' wrap={true}>
-				<Row gutter={[16, 16]} wrap={true}>
+		<div className='regalos-wrapper'>
+			<Space className='regalos-space' direction='horizontal' wrap={true}>
+				<Row
+					className='regalos-row'
+					gutter={[16, 16]}
+					wrap={true}
+				>
 					{
 						posts.map((postItem, index) => (
-							<Col key={postItem.id ? postItem.id : index} flex='auto'>
+							<Col
+								key={postItem.id ? postItem.id : index}
+								xs={24}
+								sm={12}
+								lg={12}
+								xl={8}
+							>
 								<Card
 									hoverable
 									// style={{ width: 'auto', minWidth: 350, maxWidth: 450 }}
-									style={{ height: '100%', maxWidth: 350 }}
+									// style={{ height: '100%', maxWidth: 350 }}
 									cover={
 										<Image
 											// style={{ minHeight: 450 }}
@@ -152,7 +162,14 @@ export function Regalos (): JSX.Element {
 					}
 				</Row>
 			</Space>
-			<Modal title={<Title level={1}>{`${selectedPost.title}: $${selectedPost.price}`}</Title>} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={800}>
+			<Modal
+				className='regalos-modal'
+				title={<Title level={1}>{`${selectedPost.title}: $${selectedPost.price}`}</Title>}
+				visible={isModalVisible}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				width={800}
+			>
 				<Row justify='center'>
 					<Col>
 						<Image
@@ -181,7 +198,17 @@ export function Regalos (): JSX.Element {
 				</Typography>
 				<br/>
 				<br/>
-				<Card title='Comprobante de detalle de CBU y Alias' >
+				<Card
+					className='regalos-center'
+					title='Comprobante de detalle de CBU y Alias'
+				>
+					<Image
+						className='regalos-center'
+						preview={false}
+						src={santander}
+						width={'15%'}
+						// height={550}
+					/>
 					<Typography>
 						<Title level={2}>SEBASTIAN MILHAS</Title>
 						<Title level={5}>CUIT/CUIL : 20-38996165-6</Title>

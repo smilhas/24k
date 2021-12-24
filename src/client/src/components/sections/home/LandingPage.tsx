@@ -17,65 +17,8 @@ const { Title, Text } = Typography
 
 export function LandingPage (): JSX.Element {
 
-	
-	// const countDownDate = new Date('March 19, 2022 15:30:00').getTime()
-	const calculateTimeLeft = () => {
-		const year = new Date().getFullYear()
-		const difference = +new Date('03/19/2022') - +new Date()
-
-		let timeLeft = '00 , 00:00:00'
-
-		if (difference > 0) {
-			// timeLeft = {
-			// 	days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-			// 	hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-			// 	minutes: Math.floor((difference / 1000 / 60) % 60),
-			// 	seconds: Math.floor((difference / 1000) % 60)
-			// }
-			const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-			const hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
-			const minutes = Math.floor((difference / 1000 / 60) % 60)
-			const seconds = Math.floor((difference / 1000) % 60)
-			timeLeft = `${days} , ${hours}:${minutes}:${seconds}`
-		}
-		return timeLeft
-	}
-
-	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setTimeLeft(calculateTimeLeft())
-		}, 1000)
-
-		return () => clearTimeout(timer)
-	})
-
 	return (
 		<Layout  className='site-layout'>
-			<BackTop />
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<Header className='site-layout-header'>
-				<Title level={2} className='title-header'>TINI Y SEBAS</Title>
-				<Title level={3} className='title-header'>{timeLeft}</Title>
-			</Header>
 			<Content className='site-layout-content'>
 				<Title level={2} className='title-header'>¡NOS CASAMOS!</Title>
 				<br/>
