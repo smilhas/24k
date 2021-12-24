@@ -1,6 +1,14 @@
 .regalos_card {
     /* width: 300px !important; */
     /* height: 300px !important; */
+    max-width: 90%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.ant-space-item {
+    max-width: 100%;
 }
 
 .regalos-wrapper {
@@ -43,8 +51,40 @@
     /* overflow: auto; */
 }
 
+.regalos-carousel {
+    /* height: 500px; */
+}
+
+.regalos-carousel-button {
+    font-size: 15px !important;
+    height: 32px !important;
+    color: white !important;
+    background: #1890ff !important;
+    border-color: #1890ff !important;
+    width: auto !important;
+}
+
+.slick-arrow {
+    font-size: 15px !important;
+    height: 32px !important;
+    color: white !important;
+    background: #1890ff !important;
+    border-color: #1890ff !important;
+    width: auto !important;
+}
+
+.ant-carousel .ant-image {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .regalos-center {
     display: block;
     margin-right: auto;
     margin-left: auto;
+}
+
+.regalos-modal-image {
+    /* padding: 0px 5%; */
 }
