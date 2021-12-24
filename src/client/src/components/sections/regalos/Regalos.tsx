@@ -127,7 +127,7 @@ export function Regalos (): JSX.Element {
 			<Space className='regalos-space' direction='horizontal' wrap={true}>
 				<Row
 					className='regalos-row'
-					gutter={[16, 16]}
+					gutter={[26, 26]}
 					wrap={true}
 				>
 					{
@@ -164,7 +164,12 @@ export function Regalos (): JSX.Element {
 			</Space>
 			<Modal
 				className='regalos-modal'
-				title={<Title level={1}>{`${selectedPost.title}: $${selectedPost.price}`}</Title>}
+				title={
+					<>
+						<Title level={1}>{`${selectedPost.title}: $${selectedPost.price}`}</Title>
+						<Title level={5}>{selectedPost.description}</Title>
+					</>
+				}
 				visible={isModalVisible}
 				onOk={handleOk}
 				onCancel={handleCancel}
@@ -206,7 +211,7 @@ export function Regalos (): JSX.Element {
 						className='regalos-center'
 						preview={false}
 						src={santander}
-						width={'15%'}
+						width={200}
 						// height={550}
 					/>
 					<Typography>

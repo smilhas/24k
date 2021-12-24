@@ -120,44 +120,32 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 										Dev site
 									</Link>
 								</Menu.Item>
+								<Menu.Item
+									key='logout_item'
+									className='menu-item-right'
+								>
+									<Button
+										key='1'
+										type='primary'
+										onClick={() => Auth.signOut()}
+									>
+										Logout
+									</Button>
+								</Menu.Item>
 							</>
 						}
-						<Menu.Item
-							key='logout_item'
-							className='menu-item-right'
-						>
-							<Button
-								key='1'
-								type='primary'
-								onClick={() => Auth.signOut()}
-							>
-										Logout
-							</Button>
-						</Menu.Item>
 					</Menu>
 				</Header>
-				<Content className='site-layout-content'>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
+				<Content
+					className='site-layout-content'
+				>
 					<Header className='site-layout-header'>
-						<Title level={2} className='title-header'>TINI Y SEBAS</Title>
-						<Title level={3} className='title-header'>{timeLeft}</Title>
+						<Space
+							className='header-space'
+						>
+							<Title level={2} className='title-header'>TINI Y SEBAS</Title>
+							<Title level={3} className='title-header'>{timeLeft}</Title>
+						</Space>
 					</Header>
 					{props.children}
 				</Content>

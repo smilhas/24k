@@ -11,7 +11,7 @@
 
 .regalos-space {
     width: 100%;
-    padding: 64px 25vw;
+    padding: 64px 15vw;
     background: #ececec;
 }
 
@@ -21,6 +21,12 @@
     }
 }
 
+.ant-card-meta-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .regalos-row {
     /* display: flex;
     flex-wrap: wrap; */
@@ -28,17 +34,14 @@
 
 .regalos-modal {
     /* margin: 24px auto 200px auto; */
-    /* margin-bottom: 240px; */
-    padding-bottom: 0px;
+    margin-top: 40px;
+    margin-bottom: 240px;
+    /* padding-bottom: 0px; */
     /* max-height: fit-content;
     overflow-y: scroll; */
-    max-height: 85vh;
-    overflow: auto;
+    /* max-height: 85vh; */
+    /* overflow: auto; */
 }
-
-/* .regalos-modal::-webkit-scrollbar {
-    display: none;
-} */
 
 .regalos-center {
     display: block;

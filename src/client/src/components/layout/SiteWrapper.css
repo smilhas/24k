@@ -18,7 +18,7 @@
 
 .menu-item-right {
   margin-left: auto;
-  margin-right: 5%;
+  margin-right: 15vw;
 }
 
 .ant-menu-item:hover {
@@ -37,23 +37,48 @@
 
 .site-layout-content {
   width: 100%;
-  padding-top: 64px;
+  /* padding-top: 64px;
   /* max-height: 70vh; */
   /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
   /* height: 100%; */
   /* overflow-y: scroll; */
-  background-image: url(../../images/nosotros.jpg);
+  /* background-image: url(../../images/nosotros.jpg); */
   /* background: #fff; */
+  /* background-attachment: fixed;
+  background-position: 50% 29%; */
+  /* background-size: cover; */
+  /* height: 500px; */
+  /* background-repeat: no-repeat; */
+}
+
+.site-layout-header {
+  position: relative;
+
+  background-image: url(../../images/nosotros.jpg);
   background-attachment: fixed;
   background-position: 50% 29%;
   background-size: cover;
   background-repeat: no-repeat;
+
+  height: 600px !important;
+
+  padding: 0px;
 }
 
-.site-layout-header {
-  height: auto !important;
+@media (max-width:769px){
+  .site-layout-header{
+    background-attachment: local;
+  }
+}
+
+.header-space {
+  display: block;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  padding: 2.85rem 0;
   background: hsla(20,29%,65%,.5);
-  padding: 24px;
   text-align: center;
 }
 
@@ -69,7 +94,7 @@
 
 a.my-link {
   font-weight: 500;
-  color:rgba(255, 255, 255);
+  /* color:rgba(255, 255, 255); */
 }
 a.my-link:hover {
   text-decoration: underline;
