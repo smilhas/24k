@@ -284,8 +284,8 @@ function LandingPageDev (): JSX.Element {
 				title={
 					<>
 						<Title level={1}><Input defaultValue={`${selectedPost.title}`} onChange={(event) => setPost({...selectedPost, title: event.target.value})} /></Title>
-						<Title level={1}><Input value={`${selectedPost.price}`} /></Title>
-						<Title level={1}><Input value={selectedPost.description} /></Title>
+						<Title level={1}><Input value={`${selectedPost.price}`} onChange={(event) => setPost({...selectedPost, price: event.target.value})} /></Title>
+						<Title level={1}><Input value={selectedPost.description} onChange={(event) => setPost({...selectedPost, description: event.target.value})} /></Title>
 					</>
 				}
 				visible={isModalVisible}
