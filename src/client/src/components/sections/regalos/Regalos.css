@@ -88,3 +88,8 @@
 .regalos-modal-image {
     /* padding: 0px 5%; */
 }
+
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}

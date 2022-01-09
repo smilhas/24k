@@ -54,9 +54,10 @@
 .site-layout-header {
   position: relative;
 
-  background-image: url(../../images/PXL_20220101_155512968.MP.jpg);
+  background-image: url(../../images/DSC_0122.NEF.jpg);
+  /* background-image: url(../../images/PXL_20220101_155449010.MP.jpg); */
   background-attachment: fixed;
-  background-position: 50% 29%;
+  background-position: 50% 80%;
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -68,6 +69,7 @@
 @media (max-width:769px){
   .site-layout-header{
     background-attachment: local;
+    /* background-image: url(../../images/PXL_20220101_155512968.MP.jpg); */
   }
 }
 
