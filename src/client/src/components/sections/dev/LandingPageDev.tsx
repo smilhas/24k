@@ -105,7 +105,7 @@ function LandingPageDev (): JSX.Element {
 			const postData = await API.graphql(graphqlOperation(listPosts))
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			const postsData = postData.data.listPosts.items
+			const postsData = postData.data.listPosts.items.sort((a,b) => Number(a.price) - Number(b.price))
 			setPosts(postsData)
 		} catch (err) { console.log('error fetching todos') }
 	}
