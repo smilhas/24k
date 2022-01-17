@@ -38,9 +38,9 @@ export function LandingPage (): JSX.Element {
 				<Space direction='vertical'>
 					<Title level={4} className='title-header'>CEREMONIA RELIGIOSA</Title>
 					<Text className='title-header'>
-					SÁBADO 19 DE MARZO 2022
+						SÁBADO 19 DE MARZO 2022
 						<br/>
-					15:30 HS.
+						15:00 HS.
 					</Text>
 					<br/>
 					<Image
@@ -50,18 +50,18 @@ export function LandingPage (): JSX.Element {
 					/>
 					<br/>
 					<Text className='title-header'>
-					Capilla de Fatima
+						Basílica Nuestra Señora del Pilar
 						<br/>
-					Ruta 8 Km 62, Fátima
+						Junín 1898, C1113 AAV, Buenos Aires
 					</Text>
 				</Space>
 				<Divider type='vertical' className='divider-layout'/>
 				<Space direction='vertical'>
 					<Title level={4} className='title-header'>FIESTA</Title>
 					<Text className='title-header'>
-					SÁBADO 19 DE MARZO 2022
+						SÁBADO 19 DE MARZO 2022
 						<br/>
-					18:00 HS.
+						17:30 HS.
 					</Text>
 					<br/>
 					<Image
@@ -71,9 +71,16 @@ export function LandingPage (): JSX.Element {
 					/>
 					<br/>
 					<Text className='title-header'>
-					Quinta la Paz
+						Quinta la Paz
 						<br/>
-					Ruta 8 Km 62, Fátima
+						<a
+							href='https://goo.gl/maps/nBURnSW68xL7C2GRA'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='my-link'
+						>
+							Gorostiaga, Fatima, Provincia de Buenos Aires
+						</a>
 					</Text>
 				</Space>
 				<br/>
@@ -83,7 +90,20 @@ export function LandingPage (): JSX.Element {
 				<br/>
 			</Content>
 			<Footer className='site-layout-footer'>
-				<br/>
+				<Space direction='vertical' style={{margin: '10%', padding: '5%', backgroundColor: 'hsla(30,15%,95%,.85)'}}>
+					<Title level={4} className='title-header'>¿QUERES REGALARNOS?</Title>
+					<Button
+						type='primary'
+						style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d', margin: '0 0.7rem'}}
+					>
+						<Link to='/regalos' target=''>
+							<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+								VER LISTA
+							</Text>
+						</Link>
+					</Button>
+				</Space>
+				{/* <br/>
 				<br/>
 				<br/>
 				<br/>
@@ -94,7 +114,6 @@ export function LandingPage (): JSX.Element {
 				<Button
 					key='1'
 					type='primary'
-					// onClick={() => Auth.signOut()}
 				>
 					<Link to='/regalos' target=''>
 						Regalar
@@ -107,7 +126,7 @@ export function LandingPage (): JSX.Element {
 				<br/>
 				<br/>
 				<br/>
-				<br/>
+				<br/> */}
 			</Footer>
 		</Layout >
 	)

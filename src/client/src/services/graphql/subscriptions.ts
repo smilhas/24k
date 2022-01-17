@@ -92,7 +92,9 @@ export const onCreatePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -126,7 +128,9 @@ export const onUpdatePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -160,7 +164,9 @@ export const onDeletePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -197,7 +203,9 @@ export const onCreateComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -228,7 +236,9 @@ export const onUpdateComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -259,7 +269,9 @@ export const onDeleteComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId

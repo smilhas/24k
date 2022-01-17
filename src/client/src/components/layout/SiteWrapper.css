@@ -101,3 +101,17 @@ a.my-link {
 a.my-link:hover {
   text-decoration: underline;
 }
+
+.site_menu_item_left {
+  float: left;
+  margin-top: auto
+}
+
+.site_menu_item_right {
+  margin-left: auto;
+  /* padding-top: 32px; */
+  margin-top: auto;
+  margin-right: 5vw;
+  text-align: center;
+  font-size: 32px;
+}

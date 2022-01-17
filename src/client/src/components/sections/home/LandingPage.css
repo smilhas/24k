@@ -19,8 +19,10 @@
 }    
 
 .site-layout .site-layout-footer {
-    background-image: url(../../../images/carta.jpeg);
+    background-image: url(../../../images/sobre.jpg);
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     /* background: #fff; */
     padding: 24px;
     text-align: center;

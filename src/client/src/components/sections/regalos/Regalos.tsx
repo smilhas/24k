@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Modal, Image, Space, Typography, Alert, Form, Input, Button, Row, Col, Divider, Carousel } from 'antd'
-import { RightOutlined, LeftOutlined } from '@ant-design/icons'
+import { Card, Modal, Image, Space, Typography, Alert, Form, Input, Button, Row, Col, Divider, Carousel, Spin } from 'antd'
+import { RightOutlined, LeftOutlined, WhatsAppOutlined } from '@ant-design/icons'
 import '../../../App.css'
 import './Regalos.css'
 import santander from '../../../images/santander.png'
@@ -48,6 +48,7 @@ export function Regalos (): JSX.Element {
 
 	const [isAlertVisible, setAlertVisible] = useState(false)
 	const [messageError, setErrorMessage] = useState(false)
+	const [loadingMessage, setLoadingMessage] = useState(false)
 
 	const [isModalVisible, setIsModalVisible] = useState(false)
 	const [posts, setPosts] = useState<Post[]>([])
@@ -83,15 +84,15 @@ export function Regalos (): JSX.Element {
 			const postData = await API.graphql(graphqlOperation(listPosts))
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
-			const postsData = postData.data.listPosts.items.sort((a,b) => Number(a.price) - Number(b.price))
+			const postsData = postData.data.listPosts.items.sort((a,b) => Number(a.price.replace('.','')) - Number(b.price.replace('.','')))
 			setPosts(postsData)
 		} catch (err) { console.log('error fetching todos') }
 	}
 	
 	async function addComment(formValues: any) {
 		try {
-			if (!formValues.name || !formValues.content) return
-			const comment = { ...formValues, postCommentsId: selectedPost.id }
+			if (!formValues.name || !formValues.email || !formValues.content) return
+			const comment = { ...formValues, postCommentsId: selectedPost.id, check: false }
 			await API.graphql(graphqlOperation(createComment, {input: comment}))
 			countDown()
 			form.resetFields()
@@ -121,7 +122,9 @@ export function Regalos (): JSX.Element {
 
 	const onFinish = async (values: any) => {
 		console.log('Success:', values)
+		setLoadingMessage(true)
 		await addComment(values)
+		setLoadingMessage(false)
 		
 	}
 
@@ -258,12 +261,15 @@ export function Regalos (): JSX.Element {
 					<Paragraph>
 						<ul>
 							<li>
-								<Title level={5}>Hacer una transferencia bancaria equivalente al monto del regalo que quieren hacer (Los datos de la cuenta están al final de la página)</Title>
+								<Title level={5}>Hagan una transferencia bancaria equivalente al monto del regalo que quieren hacer (Los datos de la cuenta están al final de la página)</Title>
 							</li>
 							<li>
-								<Title level={5}>Dejar un comentario a continuación así te podemos agradecer!</Title>
+								<Title level={5}>Dejen un comentario a continuación así les podemos agradecer!</Title>
 							</li>
 						</ul>
+						<Title level={5} style={{color: 'gray'}}>
+							Si prefieren pueden mandarnos un mail a <a href='mailto:tiniysebas24k@gmail.com?subject=Mensaje de regalo!'>tiniysebas24k@gmail.com</a> 📨 o mandarnos un whatsapp <WhatsAppOutlined />
+						</Title>
 					</Paragraph>
 				</Typography>
 				<br/>
@@ -318,11 +324,17 @@ export function Regalos (): JSX.Element {
 					<Form.Item
 						label='Nombre'
 						name='name'
-						rules={[{ required: true, message: 'Please input your username!' }]}
+						rules={[{ required: true, message: 'Por favor ingresa tu nombre!' }]}
 					>
 						<Input/>
 					</Form.Item>
-
+					<Form.Item
+						label='Email 📨'
+						name='email'
+						rules={[{ required: true, message: 'Por favor ingresa tu email!' }]}
+					>
+						<Input/>
+					</Form.Item>
 					<Form.Item
 						label='Mensaje 😁'
 						name='content'
@@ -337,6 +349,7 @@ export function Regalos (): JSX.Element {
 						</Button>
 					</Form.Item>
 				</Form>
+				{loadingMessage && <Spin />}
 				{isAlertVisible && (
 					<Alert
 						message={messageError ? '¡Error!' : '¡Listo!'}
