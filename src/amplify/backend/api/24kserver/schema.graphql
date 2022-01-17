@@ -22,5 +22,7 @@ type Comment @model {
   id: ID!
   post: Post @belongsTo
   name: String!
+  email: String!
   content: String!
+  check: Boolean!
 }

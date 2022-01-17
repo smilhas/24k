@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space, BackTop, Typography } from 'antd'
-import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons'
+import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined, GithubOutlined } from '@ant-design/icons'
 
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
 
@@ -26,7 +26,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 			const hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
 			const minutes = Math.floor((difference / 1000 / 60) % 60)
 			const seconds = Math.floor((difference / 1000) % 60)
-			timeLeft = `${days} , ${hours}:${minutes}:${seconds}`
+			timeLeft = `${days} días , ${hours}:${minutes}:${seconds}`
 		}
 		return timeLeft
 	}
@@ -79,6 +79,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						<Menu.Item
 							key='home_item'
 							icon={<HomeOutlined />}
+							className='site_menu_item_left'
 						>
 							<Link to='/' target=''>
 								Home
@@ -87,6 +88,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						<Menu.Item
 							key='regalos_item'
 							icon={<GiftOutlined />}
+							className='site_menu_item_left'
 						>
 							<Link to='/regalos' target=''>
 								Regalos
@@ -98,6 +100,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 									key='test_submenu'
 									icon={<SettingOutlined />}
 									title='Test'
+									className='site_menu_item_left'
 								>
 									<Menu.ItemGroup title='Item 1'>
 										<Menu.Item key='setting:1'>
@@ -115,6 +118,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								<Menu.Item
 									key='alipay'
 									icon={<AppstoreOutlined />}
+									className='site_menu_item_left'
 								>
 									<Link to='/dev' target=''>
 										Dev site
@@ -122,7 +126,8 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								</Menu.Item>
 								<Menu.Item
 									key='logout_item'
-									className='menu-item-right'
+									// className='site_menu_item_right'
+									style={{marginLeft: 'auto', marginTop: 'auto'}}
 								>
 									<Button
 										key='1'
@@ -134,6 +139,21 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								</Menu.Item>
 							</>
 						}
+						<Menu.Item
+							key='git_icon_item'
+							className='site_menu_item_right'
+							icon={<GithubOutlined style={{ fontSize: '32px' }} />}
+						>
+							
+							<a
+								href='https://github.com/smilhas/24k'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='my-link'
+							/>
+							{/* <GithubOutlined style={{ fontSize: '24px', color: '#08c' }} /> */}
+							{/* </a> */}
+						</Menu.Item>
 					</Menu>
 				</Header>
 				<Content
@@ -150,24 +170,13 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 					{props.children}
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					🏄‍♂️
+					🤵👰
 					<Divider />
 					<Descriptions size='small' column={1}>
-						<Descriptions.Item label='Devloped by'>
-							Sebastian Milhas
-						</Descriptions.Item>
 						<Descriptions.Item label='Location'>
 							🌎 Buenos Aires, Argentina
 						</Descriptions.Item>
 					</Descriptions>
-					<a
-						href='https://github.com/smilhas/24k'
-						target='_blank'
-						rel='noopener noreferrer'
-						className='my-link'
-					>
-							Go checkout my Github →
-					</a>
 				</Footer>
 			</Layout>
 		</div>
