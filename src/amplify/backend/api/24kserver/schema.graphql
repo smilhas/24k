@@ -26,3 +26,11 @@ type Comment @model {
   content: String!
   check: Boolean!
 }
+
+type Guest @model {
+  id: ID!
+  name: String!
+  plusone: String
+  phone: String
+  email: String
+}
