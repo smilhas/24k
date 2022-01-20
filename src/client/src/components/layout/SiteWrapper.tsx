@@ -253,8 +253,8 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								<Col
 									xs={24}
 									sm={24}
-									lg={12}
-									xl={12}
+									lg={window.location.pathname === '/' ? 12 : 24}
+									xl={window.location.pathname === '/' ? 12 : 24}
 								>
 									<Button
 										type='primary'
