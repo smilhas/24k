@@ -33,4 +33,6 @@ type Guest @model {
   plusone: String
   phone: String
   email: String
+  assist: Boolean!
+  check: Boolean!
 }

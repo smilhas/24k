@@ -118,8 +118,6 @@ export function LandingPage (): JSX.Element {
 				<span className='dot'/><span className='dot'/><span className='dot'/>
 				<br/>
 				{/* <Divider type='vertical' className='divider-layout'/> */}
-
-				
 				<br/>
 			</Content>
 			<Footer className='site-layout-footer'>
@@ -129,7 +127,7 @@ export function LandingPage (): JSX.Element {
 						type='primary'
 						style={{backgroundColor: 'rgba(115, 133, 114, 1)', borderColor: 'rgba(115, 133, 114, 1)', margin: '0 0.7rem'}}
 					>
-						<Link to='/regalos' target=''>
+						<Link to='/regalos' target='' onClick={() => {window.scrollTo(0, 0)}}>
 							<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
 								VER LISTA
 							</Text>

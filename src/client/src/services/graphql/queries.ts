@@ -183,6 +183,8 @@ export const getGuest = /* GraphQL */ `
       plusone
       phone
       email
+      assist
+      check
       createdAt
       updatedAt
     }
@@ -201,6 +203,8 @@ export const listGuests = /* GraphQL */ `
         plusone
         phone
         email
+        assist
+        check
         createdAt
         updatedAt
       }

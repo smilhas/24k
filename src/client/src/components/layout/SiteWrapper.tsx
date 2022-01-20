@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space, BackTop, Typography } from 'antd'
+import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space, BackTop, Typography, Modal, Form, Input, Spin, Alert, Select, Row, Col } from 'antd'
 import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined, GithubOutlined } from '@ant-design/icons'
 
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
+import { createPost, updatePost, deletePost, createGuest, updateComment, deleteComment } from '../../services/graphql/mutations'
+import { getPost, listPosts, getComment, listComments } from '../../services/graphql/queries'
 
 import '../../App.css'
 import './SiteWrapper.css'
@@ -14,6 +16,13 @@ const { Title, Text } = Typography
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
+
+	const [isAlertVisible, setAlertVisible] = useState(false)
+	const [messageError, setErrorMessage] = useState(false)
+	const [loadingMessage, setLoadingMessage] = useState(false)
+
+	const [isModalVisible, setIsModalVisible] = useState(false)
+	const [form] = Form.useForm()
 
 	const calculateTimeLeft = () => {
 		const year = new Date().getFullYear()
@@ -40,6 +49,9 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 			setTimeLeft(calculateTimeLeft())
 		}, 1000)
 
+		// console.log('Origin', window.location.origin)
+		// console.log('Path', window.location.pathname)
+
 		return () => clearTimeout(timer)
 	})
 
@@ -61,9 +73,64 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 
 	const getOppositePath = () => {
 		return {
-			name: window.location.pathname.includes('regalos') ? 'INVITACIONES' : 'REGALOS',
+			name: window.location.pathname.includes('regalos') ? 'INFO' : 'REGALOS',
 			path: window.location.pathname.includes('regalos') ? '' : 'regalos'
 		}
+	}
+
+	const showModal = () => {
+		setIsModalVisible(true)
+	}
+
+	async function addGuest(formValues: any) {
+		try {
+			if (!formValues.name || !(formValues.email || formValues.phone) || !formValues.assist) throw 'You are missing required form params!'
+			const guest = { ...formValues, assist: (formValues.assist === 'si'), check: false}
+			await API.graphql(graphqlOperation(createGuest, {input: guest}))
+			countDown()
+			form.resetFields()
+		} catch (err) {
+			console.log('error creating todo:', err)
+			setErrorMessage(true)
+		}
+	}
+
+	const handleOk = () => {
+		setIsModalVisible(false)
+	}
+
+	const handleCancel = () => {
+		setIsModalVisible(false)
+	}
+
+	const handleClose = () => {
+		setAlertVisible(false)
+	}
+
+	function countDown() {
+		let secondsToGo = 5
+		setAlertVisible(true)
+		const timer = setInterval(() => {
+			secondsToGo -= 1
+		}, 1000)
+
+		setTimeout(() => {
+			clearInterval(timer)
+			setAlertVisible(false)
+			setErrorMessage(false)
+		}, secondsToGo * 1000)
+	}
+
+	const onFinish = async (values: any) => {
+		console.log('Success:', values)
+		setLoadingMessage(true)
+		await addGuest(values)
+		setLoadingMessage(false)
+		
+	}
+
+	const onFinishFailed = (errorInfo: any) => {
+		console.log('Failed:', errorInfo)
 	}
 
 	return (
@@ -88,9 +155,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 							icon={<HomeOutlined />}
 							className='site_menu_item_left'
 						>
-							<Link to='/' target=''>
-								Home
-							</Link>
+							<Link to='/' target=''/>
 						</Menu.Item>
 						<Menu.Item
 							key='regalos_item'
@@ -160,19 +225,150 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						>
 							<Title level={2} className='title-header'>TINI Y SEBAS</Title>
 							<Title level={3} className='title-header'>{timeLeft}</Title>
-							<Button
-								type='primary'
-								style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d', margin: '0 0.7rem'}}
+							<Row
+								className='regalos-row'
+								gutter={[26, 26]}
+								wrap={true}
+								style={{maxWidth: '400px', marginLeft: 'auto', marginRight: 'auto'}}
 							>
-								<Link to={`/${getOppositePath().path}`} target=''>
-									<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
-										{getOppositePath().name}
-									</Text>
-								</Link>
-							</Button>
+								{window.location.pathname === '/' &&
+									<Col
+										xs={24}
+										sm={24}
+										lg={12}
+										xl={12}
+									>
+										<Button
+											type='primary'
+											style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d', margin: '0 0.7rem', minWidth: '140px'}}
+											onClick={showModal}
+										>
+											<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+												RSVP
+											</Text>
+										</Button>
+										
+									</Col>
+								}
+								<Col
+									xs={24}
+									sm={24}
+									lg={12}
+									xl={12}
+								>
+									<Button
+										type='primary'
+										style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d', margin: '0 0.7rem', minWidth: '140px'}}
+									>
+										<Link to={`/${getOppositePath().path}`} target=''>
+											<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+												{getOppositePath().name}
+											</Text>
+										</Link>
+									</Button>
+								</Col>
+							</Row>
 						</Space>
 					</Header>
 					{props.children}
+					<Modal
+						className='regalos-modal'
+						title='RSVP'
+						visible={isModalVisible}
+						onOk={handleOk}
+						onCancel={handleCancel}
+						width={800}
+					>
+						<Form
+							name='basic'
+							labelCol={{ span: 24 }}
+							wrapperCol={{ span: 24 }}
+							form={form}
+							onFinish={onFinish}
+							onFinishFailed={onFinishFailed}
+							requiredMark={!form.getFieldsValue().email && !form.getFieldsValue().phone}
+						>
+							<Form.Item
+								label='Nombre'
+								name='name'
+								rules={[{ required: true, message: 'Por favor ingresa tu nombre!' }]}
+							>
+								<Input/>
+							</Form.Item>
+							<Form.Item
+								label='Nombre de tu acompañante'
+								name='plusone'
+							>
+								<Input />
+							</Form.Item>
+							<Form.Item
+								label='Email 📨'
+								name='email'
+								rules={[{
+									validator: async (_, email) => {
+										if (!email && !form.getFieldsValue().phone) {
+											return Promise.reject(new Error('Ingrese teléfono o email'))
+										}
+									}
+								}]}
+							>
+								<Input />
+							</Form.Item>
+							<Form.Item
+								label='Teléfono 📞'
+								name='phone'
+								rules={[{
+									validator: async (_, phone) => {
+										if (!form.getFieldsValue().email && !phone) {
+											return Promise.reject(new Error('Ingrese teléfono o email'))
+										}
+									}
+								}]}
+							>
+								<Input/>
+							</Form.Item>
+							<Form.Item
+								label='Asistencia'
+								name='assist'
+								rules={[{ required: true, message: 'Por favor indicá si vas a asistir' }]}
+							>
+								<Select>
+									<Select.Option value='si'>Confirmo Asistencia</Select.Option>
+									<Select.Option value='no'>No Asistiré</Select.Option>
+								</Select>
+							</Form.Item>
+
+							<Form.Item>
+								{loadingMessage ?
+									<Spin /> :
+									<Button
+										type='primary'
+										style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d'}}
+										htmlType='submit'
+									>
+										<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+											CONFIRMAR 🎉
+										</Text>
+									</Button>
+								}
+							</Form.Item>
+						</Form>
+						<div style={{minHeight: '100px'}}>
+							{isAlertVisible && (
+								<Alert
+									message={messageError ? '¡Error!' : '¡Listo!'}
+									type={messageError ? 'error' : 'success'}
+									description={messageError ? 'Tu mensaje no pudo ser enviado' : 'Tu mensaje fue enviado 📨'}
+									action={
+										<Button size='small' type='text' onClick={handleClose}>
+                                                Done
+										</Button>
+									}
+									showIcon
+								/>
+							)}
+						</div>
+					</Modal>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
 					🤵👰
