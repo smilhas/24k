@@ -211,7 +211,7 @@ export function Regalos (): JSX.Element {
 					>
 						<Link to='/' target='' onClick={() => {window.scrollTo(0, 0)}}>
 							<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
-								UBICACIÓN
+								INFO
 							</Text>
 						</Link>
 					</Button>
