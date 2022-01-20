@@ -209,7 +209,7 @@ export function Regalos (): JSX.Element {
 						type='primary'
 						style={{backgroundColor: 'rgba(115, 133, 114, 1)', borderColor: 'rgba(115, 133, 114, 1)', margin: '0 0.7rem'}}
 					>
-						<Link to='/' target=''>
+						<Link to='/' target='' onClick={() => {window.scrollTo(0, 0)}}>
 							<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
 								UBICACIÓN
 							</Text>
@@ -364,25 +364,29 @@ export function Regalos (): JSX.Element {
 					</Form.Item>
 
 					<Form.Item>
-						<Button type='primary' htmlType='submit'>
-									Submit
-						</Button>
-					</Form.Item>
-				</Form>
-				{loadingMessage && <Spin />}
-				{isAlertVisible && (
-					<Alert
-						message={messageError ? '¡Error!' : '¡Listo!'}
-						type={messageError ? 'error' : 'success'}
-						description={messageError ? 'Tu mensaje no pudo ser enviado' : 'Tu mensaje fue enviado 📨'}
-						action={
-							<Button size='small' type='text' onClick={handleClose}>
-								Done
+						{loadingMessage ?
+							<Spin /> :
+							<Button type='primary' htmlType='submit'>
+                                Enviar 📨
 							</Button>
 						}
-						showIcon
-					/>
-				)}
+					</Form.Item>
+				</Form>
+				<div style={{minHeight: '100px'}}>
+					{isAlertVisible && (
+						<Alert
+							message={messageError ? '¡Error!' : '¡Listo!'}
+							type={messageError ? 'error' : 'success'}
+							description={messageError ? 'Tu mensaje no pudo ser enviado' : 'Tu mensaje fue enviado 📨'}
+							action={
+								<Button size='small' type='text' onClick={handleClose}>
+                                                Done
+								</Button>
+							}
+							showIcon
+						/>
+					)}
+				</div>
 			</Modal>
 		</Layout>
 	)

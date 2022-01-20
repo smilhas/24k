@@ -316,6 +316,8 @@ export const createGuest = /* GraphQL */ `
       plusone
       phone
       email
+      assist
+      check
       createdAt
       updatedAt
     }
@@ -332,6 +334,8 @@ export const updateGuest = /* GraphQL */ `
       plusone
       phone
       email
+      assist
+      check
       createdAt
       updatedAt
     }
@@ -348,6 +352,8 @@ export const deleteGuest = /* GraphQL */ `
       plusone
       phone
       email
+      assist
+      check
       createdAt
       updatedAt
     }
