@@ -11,10 +11,15 @@
     max-width: 100%;
 }
 
-.regalos-wrapper {
+.regalos-wrapper .site-layout-content {
+    padding: unset !important;
     /* padding: 64px; */
     /* padding: auto; */
     /* background: #ececec; */
+}
+
+.regalos-wrapper.site-layout .site-layout-footer {
+    background-image: url(http://www.quintalapaz.com.ar/images/galeria/009.jpg);
 }
 
 .regalos-space {

@@ -59,6 +59,13 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 		setAuthState(result.authenticated)
 	}
 
+	const getOppositePath = () => {
+		return {
+			name: window.location.pathname.includes('regalos') ? 'INVITACIONES' : 'REGALOS',
+			path: window.location.pathname.includes('regalos') ? '' : 'regalos'
+		}
+	}
+
 	return (
 		<div>
 			<BackTop />
@@ -96,25 +103,6 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						</Menu.Item>
 						{ authenticated &&
 							<>
-								<SubMenu
-									key='test_submenu'
-									icon={<SettingOutlined />}
-									title='Test'
-									className='site_menu_item_left'
-								>
-									<Menu.ItemGroup title='Item 1'>
-										<Menu.Item key='setting:1'>
-											<Link to={`/${randomString()}`} target=''>
-											Random
-											</Link>
-										</Menu.Item>
-										<Menu.Item key='setting:2'>Option 2</Menu.Item>
-									</Menu.ItemGroup>
-									<Menu.ItemGroup title='Item 2'>
-										<Menu.Item key='setting:3'>Option 3</Menu.Item>
-										<Menu.Item key='setting:4'>Option 4</Menu.Item>
-									</Menu.ItemGroup>
-								</SubMenu>
 								<Menu.Item
 									key='alipay'
 									icon={<AppstoreOutlined />}
@@ -122,6 +110,15 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								>
 									<Link to='/dev' target=''>
 										Dev site
+									</Link>
+								</Menu.Item>
+								<Menu.Item
+									key='DevComments'
+									icon={<AppstoreOutlined />}
+									className='site_menu_item_left'
+								>
+									<Link to='/dev/comentarios' target=''>
+										Dev Comments
 									</Link>
 								</Menu.Item>
 								<Menu.Item
@@ -139,7 +136,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								</Menu.Item>
 							</>
 						}
-						<Menu.Item
+						{/* <Menu.Item
 							key='git_icon_item'
 							className='site_menu_item_right'
 							icon={<GithubOutlined style={{ fontSize: '32px' }} />}
@@ -151,9 +148,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								rel='noopener noreferrer'
 								className='my-link'
 							/>
-							{/* <GithubOutlined style={{ fontSize: '24px', color: '#08c' }} /> */}
-							{/* </a> */}
-						</Menu.Item>
+						</Menu.Item> */}
 					</Menu>
 				</Header>
 				<Content
@@ -165,6 +160,16 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						>
 							<Title level={2} className='title-header'>TINI Y SEBAS</Title>
 							<Title level={3} className='title-header'>{timeLeft}</Title>
+							<Button
+								type='primary'
+								style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d', margin: '0 0.7rem'}}
+							>
+								<Link to={`/${getOppositePath().path}`} target=''>
+									<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+										{getOppositePath().name}
+									</Text>
+								</Link>
+							</Button>
 						</Space>
 					</Header>
 					{props.children}

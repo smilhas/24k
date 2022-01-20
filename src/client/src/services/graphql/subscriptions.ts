@@ -278,3 +278,42 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
+export const onCreateGuest = /* GraphQL */ `
+  subscription OnCreateGuest {
+    onCreateGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGuest = /* GraphQL */ `
+  subscription OnUpdateGuest {
+    onUpdateGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGuest = /* GraphQL */ `
+  subscription OnDeleteGuest {
+    onDeleteGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;

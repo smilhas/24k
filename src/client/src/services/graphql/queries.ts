@@ -175,3 +175,36 @@ export const listComments = /* GraphQL */ `
     }
   }
 `;
+export const getGuest = /* GraphQL */ `
+  query GetGuest($id: ID!) {
+    getGuest(id: $id) {
+      id
+      name
+      plusone
+      phone
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGuests = /* GraphQL */ `
+  query ListGuests(
+    $filter: ModelGuestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGuests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        plusone
+        phone
+        email
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
