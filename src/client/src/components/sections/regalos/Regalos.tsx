@@ -226,8 +226,19 @@ export function Regalos (): JSX.Element {
 					</>
 				}
 				visible={isModalVisible}
-				onOk={handleOk}
 				onCancel={handleCancel}
+				footer={[
+					<Button
+						key='regalos_modal_cancel'
+						type='primary'
+						onClick={handleCancel}
+						style={{backgroundColor: 'rgba(115, 133, 114, 1)', borderColor: 'rgba(115, 133, 114, 1)', margin: '0 0.7rem'}}
+					>
+						<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+							CANCELAR
+						</Text>
+					</Button>
+				]}
 				width={800}
 			>
 				<Carousel
@@ -366,8 +377,14 @@ export function Regalos (): JSX.Element {
 					<Form.Item>
 						{loadingMessage ?
 							<Spin /> :
-							<Button type='primary' htmlType='submit'>
-                                Enviar 📨
+							<Button
+								type='primary'
+								style={{backgroundColor: '#ccae9d', borderColor: '#ccae9d'}}
+								htmlType='submit'
+							>
+								<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+									ENVIAR 📨
+								</Text>
 							</Button>
 						}
 					</Form.Item>

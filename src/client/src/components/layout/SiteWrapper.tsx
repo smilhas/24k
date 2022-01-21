@@ -275,8 +275,19 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 						className='regalos-modal'
 						title='RSVP'
 						visible={isModalVisible}
-						onOk={handleOk}
 						onCancel={handleCancel}
+						footer={[
+							<Button
+								key='regalos_modal_cancel'
+								type='primary'
+								onClick={handleCancel}
+								style={{backgroundColor: 'rgba(115, 133, 114, 1)', borderColor: 'rgba(115, 133, 114, 1)', margin: '0 0.7rem'}}
+							>
+								<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem'}}>
+									CANCELAR
+								</Text>
+							</Button>
+						]}
 						width={800}
 					>
 						<Form
