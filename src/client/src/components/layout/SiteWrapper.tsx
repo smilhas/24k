@@ -383,12 +383,13 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
 					🤵👰<br/>
-					<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem', fontSize: '2em', fontWeight: 'bolder'}}>
+					<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem', fontSize: '1.5em', fontWeight: 'bolder'}}>
+						<InstagramOutlined style={{color: 'rgb(95, 94, 94)'}}/> &nbsp;
 						<a
 							href='https://www.instagram.com/espaciodelanovia/'
 							target='_blank'
 							rel='noopener noreferrer'>
-							<InstagramOutlined /> @espaciodelanovia
+							@espaciodelanovia
 						</a>
 					</Text>
 					<Divider />
