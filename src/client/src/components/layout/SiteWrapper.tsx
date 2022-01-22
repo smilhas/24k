@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout, Menu, PageHeader, Descriptions, Button, Divider, Space, BackTop, Typography, Modal, Form, Input, Spin, Alert, Select, Row, Col } from 'antd'
-import { HomeOutlined, GiftOutlined, AppstoreOutlined, SettingOutlined, GithubOutlined } from '@ant-design/icons'
+import { HomeOutlined, GiftOutlined, AppstoreOutlined, InstagramOutlined, SettingOutlined, GithubOutlined } from '@ant-design/icons'
 
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify'
 import { createPost, updatePost, deletePost, createGuest, updateComment, deleteComment } from '../../services/graphql/mutations'
@@ -382,7 +382,15 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 					</Modal>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					🤵👰
+					🤵👰<br/>
+					<Text className='title-header' style={{color: 'white', letterSpacing: '.13rem', fontSize: '2em', fontWeight: 'bolder'}}>
+						<a
+							href='https://www.instagram.com/espaciodelanovia/'
+							target='_blank'
+							rel='noopener noreferrer'>
+							<InstagramOutlined /> @espaciodelanovia
+						</a>
+					</Text>
 					<Divider />
 					<Descriptions size='small' column={1}>
 						<Descriptions.Item label='Location'>
