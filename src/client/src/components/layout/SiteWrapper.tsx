@@ -231,7 +231,7 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 								wrap={true}
 								style={{maxWidth: '400px', marginLeft: 'auto', marginRight: 'auto'}}
 							>
-								{window.location.pathname === '/' &&
+								{/* {window.location.pathname === '/' &&
 									<Col
 										xs={24}
 										sm={24}
@@ -249,12 +249,14 @@ function SiteWrapper(props: React.ComponentProps<any>):JSX.Element {
 										</Button>
 										
 									</Col>
-								}
+								} */}
 								<Col
 									xs={24}
 									sm={24}
-									lg={window.location.pathname === '/' ? 12 : 24}
-									xl={window.location.pathname === '/' ? 12 : 24}
+									// lg={window.location.pathname === '/' ? 12 : 24}
+									// xl={window.location.pathname === '/' ? 12 : 24}
+									lg={24}
+									xl={24}
 								>
 									<Button
 										type='primary'

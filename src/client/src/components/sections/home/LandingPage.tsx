@@ -50,8 +50,8 @@ export function LandingPage (): JSX.Element {
 					<Col
 						xs={24}
 						sm={24}
-						lg={12}
-						xl={12}
+						lg={24}
+						xl={24}
 						// style={{maxWidth: '40%'}}
 					>
 						<Space direction='vertical'>
@@ -73,11 +73,11 @@ export function LandingPage (): JSX.Element {
 							</Text>
 						</Space>
 					</Col>
-					<Col
+					{/* <Col
 						xs={24}
 						sm={24}
-						lg={12}
-						xl={12}
+						lg={24}
+						xl={24}
 						// style={{maxWidth: '40%'}}
 					>
 						<Space direction='vertical'>
@@ -112,7 +112,7 @@ export function LandingPage (): JSX.Element {
 								</a>
 							</Text>
 						</Space>
-					</Col>
+					</Col> */}
 				</Row>
 				<br/>
 				<span className='dot'/><span className='dot'/><span className='dot'/>
