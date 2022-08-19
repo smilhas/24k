@@ -66,7 +66,9 @@ export const getPost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -133,7 +135,9 @@ export const getComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -160,10 +164,49 @@ export const listComments = /* GraphQL */ `
           blogPostsId
         }
         name
+        email
         content
+        check
         createdAt
         updatedAt
         postCommentsId
+      }
+      nextToken
+    }
+  }
+`;
+export const getGuest = /* GraphQL */ `
+  query GetGuest($id: ID!) {
+    getGuest(id: $id) {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGuests = /* GraphQL */ `
+  query ListGuests(
+    $filter: ModelGuestFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGuests(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        plusone
+        phone
+        email
+        assist
+        check
+        createdAt
+        updatedAt
       }
       nextToken
     }

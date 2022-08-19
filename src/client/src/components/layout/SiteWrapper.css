@@ -1,17 +1,117 @@
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
+.site-header-wrapper {
+  display: block;
+  width: 80%;
+  /* height: 45px; */
+  background: #001529;
+  padding: 0 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-menu {
+  /* width: 70%; */
+  /* background: none; */
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+
+.menu-item-right {
+  margin-left: auto;
+  margin-right: 15vw;
+}
+
+.ant-menu-item:hover {
+  background-color: transparent !important;
+  font-weight: 400;
+}
+
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  font-weight: 400;
 }
 
 .ant-layout-header.header {
   background: none;
 }
 
+.site-layout-content {
+  width: 100%;
+  /* padding-top: 64px;
+  /* max-height: 70vh; */
+  /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  /* height: 100%; */
+  /* overflow-y: scroll; */
+  /* background-image: url(../../images/nosotros.jpg); */
+  /* background: #fff; */
+  /* background-attachment: fixed;
+  background-position: 50% 29%; */
+  /* background-size: cover; */
+  /* height: 500px; */
+  /* background-repeat: no-repeat; */
+}
+
+.site-layout-header {
+  position: relative;
+
+  background-image: url(../../images/DSC_0122.NEF.jpg);
+  /* background-image: url(../../images/PXL_20220101_155449010.MP.jpg); */
+  background-attachment: fixed;
+  background-position: 50% 80%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  height: 600px !important;
+
+  padding: 0px;
+}
+
+@media (max-width:769px){
+  .site-layout-header{
+    background-attachment: local;
+    /* background-image: url(../../images/PXL_20220101_155512968.MP.jpg); */
+  }
+}
+
+.header-space {
+  display: block;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  padding: 2.85rem 0;
+  background: hsla(20,29%,65%,.5);
+  text-align: center;
+}
+
+.title-header {
+  font-family: 'Josefin Sans', sans-serif;
+  /* font-size: 1.8rem !important; */
+  letter-spacing: .3rem !important;
+  font-weight: 200 !important;
+}
+.site-layout-header .title-header {
+  color: #fff;
+}
+
 a.my-link {
   font-weight: 500;
-  color:rgba(255, 255, 255);
+  /* color:rgba(255, 255, 255); */
 }
 a.my-link:hover {
   text-decoration: underline;
+}
+
+.site_menu_item_left {
+  float: left;
+  margin-top: auto
+}
+
+.site_menu_item_right {
+  margin-left: auto;
+  /* padding-top: 32px; */
+  margin-top: auto;
+  margin-right: 5vw;
+  text-align: center;
+  font-size: 32px;
 }

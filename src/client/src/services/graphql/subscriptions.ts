@@ -92,7 +92,9 @@ export const onCreatePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -126,7 +128,9 @@ export const onUpdatePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -160,7 +164,9 @@ export const onDeletePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -197,7 +203,9 @@ export const onCreateComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -228,7 +236,9 @@ export const onUpdateComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -259,10 +269,57 @@ export const onDeleteComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
+    }
+  }
+`;
+export const onCreateGuest = /* GraphQL */ `
+  subscription OnCreateGuest {
+    onCreateGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGuest = /* GraphQL */ `
+  subscription OnUpdateGuest {
+    onUpdateGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGuest = /* GraphQL */ `
+  subscription OnDeleteGuest {
+    onDeleteGuest {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
     }
   }
 `;

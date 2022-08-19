@@ -65,7 +65,7 @@ export type Blog = {
 
 export type ModelPostConnection = {
   __typename: "ModelPostConnection",
-  items:  Array<Post >,
+  items:  Array<Post | null >,
   nextToken?: string | null,
 };
 
@@ -85,7 +85,7 @@ export type Post = {
 
 export type ModelCommentConnection = {
   __typename: "ModelCommentConnection",
-  items:  Array<Comment >,
+  items:  Array<Comment | null >,
   nextToken?: string | null,
 };
 
@@ -94,7 +94,9 @@ export type Comment = {
   id: string,
   post?: Post | null,
   name: string,
+  email: string,
   content: string,
+  check: boolean,
   createdAt: string,
   updatedAt: string,
   postCommentsId?: string | null,
@@ -161,27 +163,89 @@ export type DeletePostInput = {
 export type CreateCommentInput = {
   id?: string | null,
   name: string,
+  email: string,
   content: string,
+  check: boolean,
   postCommentsId?: string | null,
 };
 
 export type ModelCommentConditionInput = {
   name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
   content?: ModelStringInput | null,
+  check?: ModelBooleanInput | null,
   and?: Array< ModelCommentConditionInput | null > | null,
   or?: Array< ModelCommentConditionInput | null > | null,
   not?: ModelCommentConditionInput | null,
   postCommentsId?: ModelIDInput | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type UpdateCommentInput = {
   id: string,
   name?: string | null,
+  email?: string | null,
   content?: string | null,
+  check?: boolean | null,
   postCommentsId?: string | null,
 };
 
 export type DeleteCommentInput = {
+  id: string,
+};
+
+export type CreateGuestInput = {
+  id?: string | null,
+  name: string,
+  plusone?: string | null,
+  phone?: string | null,
+  email?: string | null,
+  assist: boolean,
+  check: boolean,
+};
+
+export type ModelGuestConditionInput = {
+  name?: ModelStringInput | null,
+  plusone?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  assist?: ModelBooleanInput | null,
+  check?: ModelBooleanInput | null,
+  and?: Array< ModelGuestConditionInput | null > | null,
+  or?: Array< ModelGuestConditionInput | null > | null,
+  not?: ModelGuestConditionInput | null,
+};
+
+export type Guest = {
+  __typename: "Guest",
+  id: string,
+  name: string,
+  plusone?: string | null,
+  phone?: string | null,
+  email?: string | null,
+  assist: boolean,
+  check: boolean,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateGuestInput = {
+  id: string,
+  name?: string | null,
+  plusone?: string | null,
+  phone?: string | null,
+  email?: string | null,
+  assist?: boolean | null,
+  check?: boolean | null,
+};
+
+export type DeleteGuestInput = {
   id: string,
 };
 
@@ -195,7 +259,7 @@ export type ModelBlogFilterInput = {
 
 export type ModelBlogConnection = {
   __typename: "ModelBlogConnection",
-  items:  Array<Blog >,
+  items:  Array<Blog | null >,
   nextToken?: string | null,
 };
 
@@ -214,11 +278,32 @@ export type ModelPostFilterInput = {
 export type ModelCommentFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
   content?: ModelStringInput | null,
+  check?: ModelBooleanInput | null,
   and?: Array< ModelCommentFilterInput | null > | null,
   or?: Array< ModelCommentFilterInput | null > | null,
   not?: ModelCommentFilterInput | null,
   postCommentsId?: ModelIDInput | null,
+};
+
+export type ModelGuestFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  plusone?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  assist?: ModelBooleanInput | null,
+  check?: ModelBooleanInput | null,
+  and?: Array< ModelGuestFilterInput | null > | null,
+  or?: Array< ModelGuestFilterInput | null > | null,
+  not?: ModelGuestFilterInput | null,
+};
+
+export type ModelGuestConnection = {
+  __typename: "ModelGuestConnection",
+  items:  Array<Guest | null >,
+  nextToken?: string | null,
 };
 
 export type CreateBlogMutationVariables = {
@@ -243,7 +328,7 @@ export type CreateBlogMutation = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -273,7 +358,7 @@ export type UpdateBlogMutation = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -303,7 +388,7 @@ export type DeleteBlogMutation = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -341,11 +426,13 @@ export type CreatePostMutation = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -384,11 +471,13 @@ export type UpdatePostMutation = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -427,11 +516,13 @@ export type DeletePostMutation = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -472,7 +563,9 @@ export type CreateCommentMutation = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
@@ -511,7 +604,9 @@ export type UpdateCommentMutation = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
@@ -550,10 +645,72 @@ export type DeleteCommentMutation = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
+  } | null,
+};
+
+export type CreateGuestMutationVariables = {
+  input: CreateGuestInput,
+  condition?: ModelGuestConditionInput | null,
+};
+
+export type CreateGuestMutation = {
+  createGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateGuestMutationVariables = {
+  input: UpdateGuestInput,
+  condition?: ModelGuestConditionInput | null,
+};
+
+export type UpdateGuestMutation = {
+  updateGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteGuestMutationVariables = {
+  input: DeleteGuestInput,
+  condition?: ModelGuestConditionInput | null,
+};
+
+export type DeleteGuestMutation = {
+  deleteGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -578,7 +735,7 @@ export type GetBlogQuery = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -605,7 +762,7 @@ export type ListBlogsQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
-    } >,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -639,11 +796,13 @@ export type GetPostQuery = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -682,7 +841,7 @@ export type ListPostsQuery = {
       createdAt: string,
       updatedAt: string,
       blogPostsId?: string | null,
-    } >,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -718,7 +877,9 @@ export type GetCommentQuery = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
@@ -749,11 +910,57 @@ export type ListCommentsQuery = {
         blogPostsId?: string | null,
       } | null,
       name: string,
+      email: string,
       content: string,
+      check: boolean,
       createdAt: string,
       updatedAt: string,
       postCommentsId?: string | null,
-    } >,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetGuestQueryVariables = {
+  id: string,
+};
+
+export type GetGuestQuery = {
+  getGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListGuestsQueryVariables = {
+  filter?: ModelGuestFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListGuestsQuery = {
+  listGuests?:  {
+    __typename: "ModelGuestConnection",
+    items:  Array< {
+      __typename: "Guest",
+      id: string,
+      name: string,
+      plusone?: string | null,
+      phone?: string | null,
+      email?: string | null,
+      assist: boolean,
+      check: boolean,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
     nextToken?: string | null,
   } | null,
 };
@@ -775,7 +982,7 @@ export type OnCreateBlogSubscription = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -800,7 +1007,7 @@ export type OnUpdateBlogSubscription = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -825,7 +1032,7 @@ export type OnDeleteBlogSubscription = {
         createdAt: string,
         updatedAt: string,
         blogPostsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -858,11 +1065,13 @@ export type OnCreatePostSubscription = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -896,11 +1105,13 @@ export type OnUpdatePostSubscription = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -934,11 +1145,13 @@ export type OnDeletePostSubscription = {
         __typename: "Comment",
         id: string,
         name: string,
+        email: string,
         content: string,
+        check: boolean,
         createdAt: string,
         updatedAt: string,
         postCommentsId?: string | null,
-      } >,
+      } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -974,7 +1187,9 @@ export type OnCreateCommentSubscription = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
@@ -1008,7 +1223,9 @@ export type OnUpdateCommentSubscription = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
@@ -1042,9 +1259,56 @@ export type OnDeleteCommentSubscription = {
       blogPostsId?: string | null,
     } | null,
     name: string,
+    email: string,
     content: string,
+    check: boolean,
     createdAt: string,
     updatedAt: string,
     postCommentsId?: string | null,
+  } | null,
+};
+
+export type OnCreateGuestSubscription = {
+  onCreateGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateGuestSubscription = {
+  onUpdateGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteGuestSubscription = {
+  onDeleteGuest?:  {
+    __typename: "Guest",
+    id: string,
+    name: string,
+    plusone?: string | null,
+    phone?: string | null,
+    email?: string | null,
+    assist: boolean,
+    check: boolean,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };

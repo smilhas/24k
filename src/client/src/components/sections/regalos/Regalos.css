@@ -1,9 +1,100 @@
 .regalos_card {
     /* width: 300px !important; */
     /* height: 300px !important; */
+    max-width: 90%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.site-card-wrapper {
-    padding: 30px;
+.ant-space-item {
+    max-width: 100%;
+}
+
+.regalos-wrapper .site-layout-content {
+    padding: unset !important;
+    /* padding: 64px; */
+    /* padding: auto; */
+    /* background: #ececec; */
+}
+
+.regalos-wrapper.site-layout .site-layout-footer {
+    background-image: url(../../../images/QLP.jpg);
+}
+
+.regalos-space {
+    width: 100%;
+    padding: 64px 15vw;
     background: #ececec;
-  }
+}
+
+@media (max-width:768px){
+    .regalos-space{
+        padding: 64px 5vw;
+    }
+}
+
+.ant-card-meta-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.regalos-row {
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
+.regalos-modal {
+    /* margin: 24px auto 200px auto; */
+    margin-top: 40px;
+    margin-bottom: 240px;
+    /* padding-bottom: 0px; */
+    /* max-height: fit-content;
+    overflow-y: scroll; */
+    /* max-height: 85vh; */
+    /* overflow: auto; */
+}
+
+.regalos-carousel {
+    /* height: 500px; */
+}
+
+.regalos-carousel-button {
+    font-size: 15px !important;
+    height: 32px !important;
+    color: white !important;
+    background: #1890ff !important;
+    border-color: #1890ff !important;
+    width: auto !important;
+}
+
+.slick-arrow {
+    font-size: 15px !important;
+    height: 32px !important;
+    color: white !important;
+    background: #1890ff !important;
+    border-color: #1890ff !important;
+    width: auto !important;
+}
+
+.ant-carousel .ant-image {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.regalos-center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.regalos-modal-image {
+    /* padding: 0px 5%; */
+}
+
+body .slick-prev::before,
+body .slick-next::before {
+  display: none;
+}

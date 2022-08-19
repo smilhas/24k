@@ -104,7 +104,9 @@ export const createPost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -141,7 +143,9 @@ export const updatePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -178,7 +182,9 @@ export const deletePost = /* GraphQL */ `
         items {
           id
           name
+          email
           content
+          check
           createdAt
           updatedAt
           postCommentsId
@@ -218,7 +224,9 @@ export const createComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -252,7 +260,9 @@ export const updateComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
@@ -286,10 +296,66 @@ export const deleteComment = /* GraphQL */ `
         blogPostsId
       }
       name
+      email
       content
+      check
       createdAt
       updatedAt
       postCommentsId
+    }
+  }
+`;
+export const createGuest = /* GraphQL */ `
+  mutation CreateGuest(
+    $input: CreateGuestInput!
+    $condition: ModelGuestConditionInput
+  ) {
+    createGuest(input: $input, condition: $condition) {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateGuest = /* GraphQL */ `
+  mutation UpdateGuest(
+    $input: UpdateGuestInput!
+    $condition: ModelGuestConditionInput
+  ) {
+    updateGuest(input: $input, condition: $condition) {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteGuest = /* GraphQL */ `
+  mutation DeleteGuest(
+    $input: DeleteGuestInput!
+    $condition: ModelGuestConditionInput
+  ) {
+    deleteGuest(input: $input, condition: $condition) {
+      id
+      name
+      plusone
+      phone
+      email
+      assist
+      check
+      createdAt
+      updatedAt
     }
   }
 `;
