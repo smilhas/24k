@@ -22,5 +22,17 @@ type Comment @model {
   id: ID!
   post: Post @belongsTo
   name: String!
+  email: String!
   content: String!
+  check: Boolean!
+}
+
+type Guest @model {
+  id: ID!
+  name: String!
+  plusone: String
+  phone: String
+  email: String
+  assist: Boolean!
+  check: Boolean!
 }
