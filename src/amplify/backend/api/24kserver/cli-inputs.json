@@ -3,10 +3,13 @@
   "serviceConfiguration": {
     "apiName": "24kserver",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Users\\sebas\\repos\\myProjects\\24k\\src\\amplify\\backend\\api\\24kserver\\schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "expirationTime": 364,
+      "apiKeyExpirationDate": "2023-08-18T18:58:38.462Z",
+      "keyDescription": "24k-api-key"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
   }
 }

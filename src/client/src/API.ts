@@ -306,6 +306,80 @@ export type ModelGuestConnection = {
   nextToken?: string | null,
 };
 
+export type ModelSubscriptionBlogFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionBlogFilterInput | null > | null,
+  or?: Array< ModelSubscriptionBlogFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionPostFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  price?: ModelSubscriptionStringInput | null,
+  imagepath?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPostFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPostFilterInput | null > | null,
+};
+
+export type ModelSubscriptionCommentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  content?: ModelSubscriptionStringInput | null,
+  check?: ModelSubscriptionBooleanInput | null,
+  and?: Array< ModelSubscriptionCommentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionCommentFilterInput | null > | null,
+};
+
+export type ModelSubscriptionBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+};
+
+export type ModelSubscriptionGuestFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  plusone?: ModelSubscriptionStringInput | null,
+  phone?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  assist?: ModelSubscriptionBooleanInput | null,
+  check?: ModelSubscriptionBooleanInput | null,
+  and?: Array< ModelSubscriptionGuestFilterInput | null > | null,
+  or?: Array< ModelSubscriptionGuestFilterInput | null > | null,
+};
+
 export type CreateBlogMutationVariables = {
   input: CreateBlogInput,
   condition?: ModelBlogConditionInput | null,
@@ -965,6 +1039,10 @@ export type ListGuestsQuery = {
   } | null,
 };
 
+export type OnCreateBlogSubscriptionVariables = {
+  filter?: ModelSubscriptionBlogFilterInput | null,
+};
+
 export type OnCreateBlogSubscription = {
   onCreateBlog?:  {
     __typename: "Blog",
@@ -988,6 +1066,10 @@ export type OnCreateBlogSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateBlogSubscriptionVariables = {
+  filter?: ModelSubscriptionBlogFilterInput | null,
 };
 
 export type OnUpdateBlogSubscription = {
@@ -1015,6 +1097,10 @@ export type OnUpdateBlogSubscription = {
   } | null,
 };
 
+export type OnDeleteBlogSubscriptionVariables = {
+  filter?: ModelSubscriptionBlogFilterInput | null,
+};
+
 export type OnDeleteBlogSubscription = {
   onDeleteBlog?:  {
     __typename: "Blog",
@@ -1038,6 +1124,10 @@ export type OnDeleteBlogSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnCreatePostSubscriptionVariables = {
+  filter?: ModelSubscriptionPostFilterInput | null,
 };
 
 export type OnCreatePostSubscription = {
@@ -1080,6 +1170,10 @@ export type OnCreatePostSubscription = {
   } | null,
 };
 
+export type OnUpdatePostSubscriptionVariables = {
+  filter?: ModelSubscriptionPostFilterInput | null,
+};
+
 export type OnUpdatePostSubscription = {
   onUpdatePost?:  {
     __typename: "Post",
@@ -1118,6 +1212,10 @@ export type OnUpdatePostSubscription = {
     updatedAt: string,
     blogPostsId?: string | null,
   } | null,
+};
+
+export type OnDeletePostSubscriptionVariables = {
+  filter?: ModelSubscriptionPostFilterInput | null,
 };
 
 export type OnDeletePostSubscription = {
@@ -1160,6 +1258,10 @@ export type OnDeletePostSubscription = {
   } | null,
 };
 
+export type OnCreateCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
+};
+
 export type OnCreateCommentSubscription = {
   onCreateComment?:  {
     __typename: "Comment",
@@ -1194,6 +1296,10 @@ export type OnCreateCommentSubscription = {
     updatedAt: string,
     postCommentsId?: string | null,
   } | null,
+};
+
+export type OnUpdateCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
 };
 
 export type OnUpdateCommentSubscription = {
@@ -1232,6 +1338,10 @@ export type OnUpdateCommentSubscription = {
   } | null,
 };
 
+export type OnDeleteCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
+};
+
 export type OnDeleteCommentSubscription = {
   onDeleteComment?:  {
     __typename: "Comment",
@@ -1268,6 +1378,10 @@ export type OnDeleteCommentSubscription = {
   } | null,
 };
 
+export type OnCreateGuestSubscriptionVariables = {
+  filter?: ModelSubscriptionGuestFilterInput | null,
+};
+
 export type OnCreateGuestSubscription = {
   onCreateGuest?:  {
     __typename: "Guest",
@@ -1283,6 +1397,10 @@ export type OnCreateGuestSubscription = {
   } | null,
 };
 
+export type OnUpdateGuestSubscriptionVariables = {
+  filter?: ModelSubscriptionGuestFilterInput | null,
+};
+
 export type OnUpdateGuestSubscription = {
   onUpdateGuest?:  {
     __typename: "Guest",
@@ -1296,6 +1414,10 @@ export type OnUpdateGuestSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnDeleteGuestSubscriptionVariables = {
+  filter?: ModelSubscriptionGuestFilterInput | null,
 };
 
 export type OnDeleteGuestSubscription = {
